@@ -4,6 +4,9 @@ const app = express();
 const port = 3000; // Port sur lequel le serveur écoutera
 // const hostname = "127.0.0.1";
 
+// View engine setup
+app.set('view engine', 'ejs');
+
 // Définissez les routes et la logique de votre application ici
 
 app.listen(port, () => {
@@ -13,7 +16,7 @@ app.listen(port, () => {
 
 
 app.get('/', (req, res) => {
-    res.send('Bienvenue sur ma page d\'accueil !');
+    res.render('home')
     console.log("page d'accueil");
 });
   
