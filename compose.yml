@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  node:
+    container_name: demo-node
+    image: 'node:latest'
+    working_dir: '/home/arthur_ubuntu/meeting-app'
+    command:
+      - /bin/sh
+      - '-c'
+      - 'npm install && npm start'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './src:/home/arthur_ubuntu/meeting-app'
+    links:
+      - mysql
+  mysql:
+    container_name: demo-mysql
+    image: 'mysql:latest'
+    ports:
+      - '10000:10000'
