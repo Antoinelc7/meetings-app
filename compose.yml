@@ -17,5 +17,8 @@ services:
   mysql:
     container_name: demo-mysql
     image: 'mysql:latest'
-    ports:
-      - '10000:10000'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: yourdatabase
+    # ports:
+    #   - '10000:10000'
