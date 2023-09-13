@@ -1,4 +1,3 @@
-// Dans app.js (ou server.js)
 const express = require('express');
 const app = express();
 const port = 3000; // Port sur lequel le serveur écoutera
@@ -7,9 +6,11 @@ const port = 3000; // Port sur lequel le serveur écoutera
 // View engine setup
 app.set('view engine', 'ejs');
 
-// Définissez les routes et la logique de votre application ici
 
-app.listen(port, () => {
+
+// Définissez les routes et la logique de votre application ici
+app.listen(port, (err) => {
+  if (err) console.log(err);
   console.log(`Serveur Express écoutant sur le port ${port}`);
 });
 
