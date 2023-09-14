@@ -67,3 +67,9 @@ app.route('/import-csv')
 app.get('/api', (req, res) => {
     res.send('Route pour la future API.');
 });  
+
+
+app.post('/services/microsoftGraph', (req, res) => {
+  res.send('Route pour créer une équipe.');
+  console.log("équipe créer");
+});
