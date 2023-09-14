@@ -20,5 +20,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: yourdatabase
-    # ports:
-    #   - '10000:10000'
+    ports:
+      - '10000:10000'

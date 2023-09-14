@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1>Ceci est la page d'accueil de l'app</h1>
+
+    <form action="/import-csv" method="POST" enctype='multipart/form-data'>
+        <input type="file" name="csvFile_import" id="csvFile_import">
+        <input type="submit" value="Importer CSV">
+    </form>
 </body>
 </html>
