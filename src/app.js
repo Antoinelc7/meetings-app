@@ -68,12 +68,14 @@ app.route('/import-csv')
         results.push(row); // On push dans le tableau results chaque ligne du csv
       })
       .on('end', () => {
+        console.log(results);
         fs.unlinkSync(req.file.path);// Supprimez le fichier temporaire après avoir traité les données      
         res.status(200).json(results);
       });
   })
   .get((req, res) => {
-    res.send('Route pour uploader le CSV')
+    console.warn("CSV upload route accessed without POST method");
+    res.redirect("/")
   });
 
   app.get('/evenements', (req, res) => {
