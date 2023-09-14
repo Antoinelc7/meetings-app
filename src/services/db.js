@@ -1,4 +1,4 @@
-const sqlite = require('sqlite3');
+const sqlite = require('sqlite3').verbose();
 
 const db = new sqlite.Database('db/meeting-app.sqlite'); //Connexion à la base de données SQLite
 
@@ -24,7 +24,6 @@ let createEventsTable = () => {
         else console.log('Table "events" créée avec succès.');
       }
     );
-    db.close();
 }
 
 let persistEvents = (dataArray) => {
@@ -32,25 +31,37 @@ let persistEvents = (dataArray) => {
         dataArray.forEach(event => {
             const {
                 eventName,
-                organizer,
-                invitedUsers,
-                startDate,
-                endDate,
-                startHour,
-                endHour,
-                teamChannel,
-                eventDescription,
-                eventRecurrence,
-                meetingLink
+                eventOrganizer: organizers,
+                eventInvited: invitedUsers,
+                eventStartDate,
+                eventEndDate,
+                eventStartSchedule: eventStartHour,
+                eventEndSchedule: eventEndHour
             } = event;
-
+            
             // FWI: stmt == "statement"
             const sqlStmt = db.prepare(`
-                INSERT INTO events (event_name, organizer, /* ... autres colonnes */)
-                VALUES (?, ? /* ... autres valeurs */)
+            INSERT INTO events (event_name, organizers, invited_users, event_start_date, event_end_date, event_start_hour, event_end_hour)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             `);
+
+            sqlStmt.run(
+                eventName,
+                organizers,
+                invitedUsers,
+                eventStartDate,
+                eventEndDate,
+                eventStartHour,
+                eventEndHour
+            );
+            sqlStmt.finalize(); //Optional but makes sure the delays are good
         });
     });
+    db.close();
 }
 
-module.exports = { createEventsTable }
+module.exports = {
+    db,
+    createEventsTable,
+    persistEvents
+}

@@ -6,7 +6,7 @@ const path = require('path');
 const multer = require('multer');
 const csvParser = require('csv-parser');
 // DB
-const { createEventsTable } = require('./services/db.js')
+const { db, createEventsTable, persistEvents } = require('./services/db.js')
 
 
 
@@ -28,7 +28,7 @@ app.listen(port, (err) => {
       
 
 
-createEventsTable();
+createEventsTable(); // from db services
       
 app.get('/', (req, res) => {
   res.render('home')
@@ -48,7 +48,7 @@ app.route('/import-csv')
       .on('end', () => {
         console.log(results);
         fs.unlinkSync(req.file.path);// Supprimez le fichier temporaire après avoir traité les données
-        persistData(results)
+        persistEvents(results) // from db services
         res.status(200).json(results);
       });
   })
