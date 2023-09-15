@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meetings App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Roboto+Slab:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css" type="text/css">
 </head>
 <body>
-    <h1>Ceci est la page d'accueil de l'app</h1>
+    <div class="home__wrapper">
+        <div class="home__titles">
+            <h1 class="home__mainTitle">Meetings App</h1>
+            <h2 class="home__subTitle">Créez facilement des réunions teams à partif d'un fichier excel</h2>
+        </div>
+    
+        <form class="home__csvForm" action="/import-csv" method="POST" enctype='multipart/form-data'>
+            <input type="file" name="csvFile_import" id="csvFile_import">
+            <input class="submitBtn" type="submit" value="Importer CSV">
+        </form>
+    </div>
 
-    <form action="/import-csv" method="POST" enctype='multipart/form-data'>
-        <input type="file" name="csvFile_import" id="csvFile_import">
-        <input type="submit" value="Importer CSV">
-    </form>
+    <div class="home__logoWrapper">
+        <img src="assets/img/logo.png" alt="Logo de l'entreprise">
+    </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ const path = require('path');
 const multer = require('multer');
 const csvParser = require('csv-parser');
 // DB
+const sqlite = require('sqlite3')
 const { db, createEventsTable, persistEvents } = require('./services/db.js')
 
 
@@ -15,6 +16,7 @@ const port = 3000; // Port sur lequel le serveur écoutera
 // const hostname = "127.0.0.1";
 
 app.set('view engine', 'ejs'); // View engine setup
+app.use('/assets', express.static('assets'));
 
 const upload = multer({ dest: 'tmp/csv/' }); // Définissez le dossier de destination pour les fichiers CSV
 
